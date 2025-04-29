@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YXCYQT2EQF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  
+  gtag('config', 'G-YXCYQT2EQF');
+  gtag('set', {'user_id': 'EC154'}); // Unique tracking ID
+
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Optimization Prompt Generator</title>
+    <style>
+        /* Reset and global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f4f8;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Page container */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: #34495e;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-right: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .cta-button {
+            display: block;
+            background-color: #e67e22;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar .cta-button:hover {
+            background-color: #d35400;
+        }
+
+        /* Main form container */
+        .form-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2C3E50;
+        }
+
+        /* Optional fields container */
+        .optional-fields {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .optional-fields .form-group {
+            margin-bottom: 15px;
+        }
+
+        .optional-fields label {
+            font-size: 12px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .optional-fields input,
+        .optional-fields textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fff;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .optional-fields input:focus,
+        .optional-fields textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        .optional-fields textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        /* Main form styling */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #555;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #3498db;
+            background-color: #fff;
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Copy and Reset buttons for each text box */
+        .form-group .field-buttons {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group .field-buttons button {
+            padding: 6px 12px;
+            font-size: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-group .field-buttons button:hover {
+            background-color: #2980b9;
+        }
+
+        .form-group .field-buttons button.reset {
+            background-color: #e74c3c;
+        }
+
+        .form-group .field-buttons button.reset:hover {
+            background-color: #c0392b;
+        }
+
+        /* Form buttons */
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .form-buttons button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 48%;
+            transition: all 0.3s ease;
+        }
+
+        .form-buttons button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Generated prompt section */
+        #generatedPrompt {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        #generatedPrompt ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        #generatedPrompt ul li {
+            margin-bottom: 8px;
+        }
+
+        /* All Reset button */
+        #allResetButton {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #allResetButton:hover {
+            background-color: #c0392b;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .form-container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .optional-fields {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .form-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #34495e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #e67e22;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Sidebar Section -->
+        <div class="sidebar">
+            <h2>Get More Sales</h2>
+            <p>Optimize your Amazon product listings with AI-powered tools.</p>
+            <p>Enhance your titles, search terms, and bullet points to boost visibility and conversions.</p>
+            <a href="https://www.amazon.com" class="cta-button">Visit Amazon</a>
+        </div>
+
+        <!-- Main Form Section -->
+        <div class="form-container">
+            <h1>Amazon Product Optimization Prompt Generator</h1>
+
+            <form id="productForm">
+                <div class="form-group">
+                    <label for="productTitle">Current Product Title</label>
+                    <input type="text" id="productTitle" name="productTitle" required>
+                    <div class="field-buttons">
+                        <button type="button" class="copy">Copy</button>
+                        <button type="button" class="reset">Reset</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productSearchTerm">Current Product Search Term</label>
+                    <input type="text" id="productSearchTerm" name="productSearchTerm" required>
+                    <div class="field-buttons">
+                        <button type="button" class="copy">Copy</button>
+                        <button type="button" class="reset">Reset</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productBulletPoints">Current Product Bullet Points</label>
+                    <textarea id="productBulletPoints" name="productBulletPoints" required placeholder="Enter bullet points, separated by commas"></textarea>
+                    <div class="field-buttons">
+                        <button type="button" class="copy">Copy</button>
+                        <button type="button" class="reset">Reset</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Current Product Description</label>
+                    <textarea id="productDescription" name="productDescription" required></textarea>
+                    <div class="field-buttons">
+                        <button type="button" class="copy">Copy</button>
+                        <button type="button" class="reset">Reset</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="competitorKeywords">Competitor Keywords</label>
+                    <textarea id="competitorTitles" name="competitorTitles" required placeholder="Enter competitor Keywords, separated by commas"></textarea>
+                    <div class="field-buttons">
+                        <button type="button" class="copy">Copy</button>
+                        <button type="button" class="reset">Reset</button>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="submit">Generate Prompt</button>
+                    <button type="button" id="resetButton">Reset</button>
+                </div>
+            </form>
+
+            <div id="generatedPrompt" style="display: none;">
+                <h2>Generated Prompt for ChatGPT</h2>
+                <p id="promptText"></p>
+                <div class="form-buttons">
+                    <button id="copyButton">Copy to Clipboard</button>
+                    <button id="resetPromptButton">Reset Prompt</button>
+                </div>
+            </div>
+
+            <!-- All Reset Button -->
+            <button id="allResetButton">Reset All Fields</button>
+        </div>
+
+        <!-- Optional Fields Section -->
+        <div class="optional-fields">
+            <div class="form-group">
+                <label for="productCategory">Product Category (Optional)</label>
+                <input type="text" id="productCategory" name="productCategory" placeholder="e.g., Electronics, Home & Kitchen">
+                <div class="field-buttons">
+                    <button type="button" class="copy">Copy</button>
+                    <button type="button" class="reset">Reset</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="targetAudience">Target Audience (Optional)</label>
+                <input type="text" id="targetAudience" name="targetAudience" placeholder="e.g., Parents, Pet Owners, Gamers">
+                <div class="field-buttons">
+                    <button type="button" class="copy">Copy</button>
+                    <button type="button" class="reset">Reset</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="keyFeatures">Key Features (Optional)</label>
+                <textarea id="keyFeatures" name="keyFeatures" placeholder="Enter key features, separated by commas"></textarea>
+                <div class="field-buttons">
+                    <button type="button" class="copy">Copy</button>
+                    <button type="button" class="reset">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>All Rights Reserved, Developed By EC006 </a></p>
+    </footer>
+
+    <script>
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Copied to clipboard!');
+        }
+
+        // Function to reset a specific field
+        function resetField(field) {
+            field.value = '';
+        }
+
+        // Add event listeners for copy and reset buttons
+        document.querySelectorAll('.field-buttons .copy').forEach(button => {
+            button.addEventListener('click', function() {
+                const field = this.closest('.form-group').querySelector('input, textarea');
+                copyToClipboard(field.value);
+            });
+        });
+
+        document.querySelectorAll('.field-buttons .reset').forEach(button => {
+            button.addEventListener('click', function() {
+                const field = this.closest('.form-group').querySelector('input, textarea');
+                resetField(field);
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('productForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const productTitle = document.getElementById('productTitle').value;
+            const productSearchTerm = document.getElementById('productSearchTerm').value;
+            const productBulletPoints = document.getElementById('productBulletPoints').value.split(',');
+            const productDescription = document.getElementById('productDescription').value;
+            const competitorTitles = document.getElementById('competitorTitles').value.split(',');
+
+            // Optional fields
+            const productCategory = document.getElementById('productCategory').value;
+            const targetAudience = document.getElementById('targetAudience').value;
+            const keyFeatures = document.getElementById('keyFeatures').value.split(',');
+
+            // Create the prompt
+            let bulletPointsHTML = productBulletPoints.map(point => `<li>${point.trim()}</li>`).join('');
+            let keyFeaturesHTML = keyFeatures.map(feature => `<li>${feature.trim()}</li>`).join('');
+            let competitorTitlesHTML = competitorTitles.map(title => `<li>${title.trim()}</li>`).join('');
+
+            const generatedPrompt = `
+"I am listing a product on Amazon and need help with title and search term making. Here’s the information:
+Product Category:                   "${productCategory || 'Not provided'}"
+Target Audience:                    "${targetAudience || 'Not provided'}"
+Current Product Title:              "${productTitle}"
+Current Product Search Term:        "${productSearchTerm}"
+Current Product Bullet Points:
+<ul>${bulletPointsHTML}</ul>
+Current Product Description:        "${productDescription}"
+Key Features:
+<ul>${keyFeaturesHTML || 'Not provided'}</ul>
+Competitor Keywords:
+<ul>${competitorTitlesHTML}</ul>
+
+Please do the following:
+
+1. Shortlist Keywords: Analyze and Identify the top 8 to 12 keywords that are most relevant to my product description.
+2. Make SEO Optimized Title for Amazon for My product consisting 160 to 180 characters.
+3. Analyze my Bullet Points, Product Specifications and description and integrate unique selling points and features into Title
+
+Amazon title best practice: 
+Prioritize Main Keywords: Place the most relevant keywords at the beginning of the title while highlighting key product benefits and features concisely.
+Include Essential Details: Mention product quantity, size, important features, and target audience. If applicable, include multiple use cases or customer niches to enhance search visibility.
+Formatting Guidelines: 
+Use numerals instead of spelled-out numbers (e.g., "6" instead of "six").
+Fully spell out measurement units (e.g., "6 inches" instead of "6”").
+Apply title casing (capitalize the first letter of each word, except for short conjunctions, articles, and prepositions).
+
+
+Amazon title What to Avoid: 
+Avoid all caps, except for brand names if necessary.
+Do not use special characters (!, $, ?, _, {, }, ^, ¬, ¦) unless part of the brand name.
+Refrain from repeating the same word more than twice (except prepositions, articles, and conjunctions).
+Do not use brand names in title
+Do not include merchant names (unless private label) or promotional phrases like "free shipping" or "best deal."
+Amazon Requirements: 
+Titles must not exceed 200 characters, including spaces.
+No subjective claims like "best" or "greatest."
+
+
+Seach Term best practice:
+Amazon’s algorithm uses these keywords to match products with customer searches.
+
+visitors can’t see these keywords, they are a way to tell Amazon’s algorithm that a specific keyword is relevant to your listing.
+
+Include: 
+Include synonyms and spelling variations of keywords. For example, people who are looking for a hand moisturizer may also be interested in a hand ‘lotion’
+Include abbreviations and alternate names. Lord of the Rings, for instance, is popularly abbreviated to LotR
+You need to separate words with a single space. However, you don’t need to use punctuation
+Wherever possible enter the phrases in the logical order of search. For example, instead of ‘camera digital print instant,’ you should type in ‘digital instant print camera’
+Search terms are not case-sensitive. So you can use all lower case
+
+Seach Term What to avoid: 
+Do not repeat words/keywords. If you have used some keywords in your product title, bullet points, or description, avoid adding them here
+Do not include brand names – yours or your competitors’
+Do not include ASINs in your backed keywords
+Do not use stop words such as “a,” “an,” “and,” “by,” “for,” “of,” “the,” “with,” and so on. Remember, readability is not a concern
+Use singular or plural, no need to include both. If you want to add the keyword ‘cat’ for instance, either one of ‘cat’ or ‘cats’ will suffice
+No temporary statements such as “new,” or “on sale now.” Similarly, you should avoid subjective claims, such as “best,” “cheapest,” “amazing,” and so on
+Do not add abusive or offensive terms that are against Amazon’s policy
+Avoid keywords that are misleading or irrelevant
+
+Create 3 Optimized Titles, Title of 170 to 190 Characters according to above requirement and Using the exact keywords I provide. Use the core keyword first, followed by a separator “-”, then two more keywords by “│”this Separator, and finally, include features, use scenario or attributes of the product.
+Create Search term of 400-450 characters according to above criteria.
+
+Note: Try To Avoid Some fragment words Like "free, Durable, Play, Safe, Hideout etc"`;
+
+            // Display the generated prompt
+            document.getElementById('promptText').innerHTML = generatedPrompt;
+            document.getElementById('generatedPrompt').style.display = 'block';
+        });
+
+        // Reset functionality for individual fields
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.getElementById('productForm').reset();
+            document.getElementById('generatedPrompt').style.display = 'none';
+        });
+
+        // Reset functionality for the generated prompt
+        document.getElementById('resetPromptButton').addEventListener('click', function() {
+            document.getElementById('generatedPrompt').style.display = 'none';
+        });
+
+        // Reset all fields
+        document.getElementById('allResetButton').addEventListener('click', function() {
+            document.getElementById('productForm').reset();
+            document.getElementById('generatedPrompt').style.display = 'none';
+            document.getElementById('productCategory').value = '';
+            document.getElementById('targetAudience').value = '';
+            document.getElementById('keyFeatures').value = '';
+        });
+
+        // Copy to clipboard functionality for the generated prompt
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const promptText = document.getElementById('promptText').innerText;
+            copyToClipboard(promptText);
+        });
+    </script>
+
+</body>
+</html>
